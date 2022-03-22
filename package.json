@@ -1,27 +1,41 @@
 {
-  "name": "toast",
-  "version": "0.0.1",
-  "description": "React toast library",
-  "scripts": {
-    "rollup": "rollup -c"
-  },
-  "author": "dimavnuk",
-  "license": "ISC",
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^21.0.2",
-    "@rollup/plugin-node-resolve": "^13.1.3",
-    "@rollup/plugin-typescript": "^8.3.1",
-    "@types/react": "^17.0.41",
-    "react": "^17.0.2",
-    "rollup": "^2.70.1",
-    "rollup-plugin-dts": "^4.2.0",
-    "rollup-plugin-postcss": "^4.0.2",
-    "typescript": "^4.6.2"
-  },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "files": [
-    "dist"
-  ],
-  "types": "dist/index.d.ts"
+   "name": "react-toast-library-modsen",
+   "version": "1.0.0",
+   "description": "React toast library",
+   "scripts": {
+      "rollup": "rollup -c",
+	  "lint": "eslint src/**/* --ext .ts,.tsx --fix"
+   },
+   "author": "brainslam",
+   "license": "ISC",
+   "devDependencies": {
+      "@rollup/plugin-commonjs": "^21.0.2",
+      "@rollup/plugin-node-resolve": "^13.1.3",
+      "@rollup/plugin-typescript": "^8.3.1",
+      "@types/react": "^17.0.41",
+      "@typescript-eslint/eslint-plugin": "^5.16.0",
+      "@typescript-eslint/parser": "^5.16.0",
+      "babel-eslint": "^10.1.0",
+      "eslint": "^8.11.0",
+      "eslint-config-prettier": "^8.5.0",
+      "eslint-config-react-app": "^7.0.0",
+      "eslint-plugin-flowtype": "^8.0.3",
+      "eslint-plugin-import": "^2.25.4",
+      "eslint-plugin-jsx-a11y": "^6.5.1",
+      "eslint-plugin-prettier": "^4.0.0",
+      "eslint-plugin-react": "^7.29.4",
+      "eslint-plugin-react-hooks": "^4.3.0",
+      "prettier": "^2.6.0",
+      "react": "^17.0.2",
+      "rollup": "^2.70.1",
+      "rollup-plugin-dts": "^4.2.0",
+      "rollup-plugin-postcss": "^4.0.2",
+      "typescript": "^4.6.2"
+   },
+   "main": "dist/cjs/index.js",
+   "module": "dist/esm/index.js",
+   "files": [
+      "dist"
+   ],
+   "types": "dist/index.d.ts"
 }
