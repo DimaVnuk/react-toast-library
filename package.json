@@ -1,6 +1,6 @@
 {
   "name": "react-toast-library-modsen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React toast library",
   "scripts": {
     "rollup": "rollup -c",
