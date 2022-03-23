@@ -1,11 +1,22 @@
-import React from 'react';
-
-interface ButtonProps {
-   children: string;
+import React, { FC } from "react";
+import './Button.css'
+export interface ButtonProps {
+  color: string;
+  big?: boolean;
 }
 
-function Button(props: ButtonProps) {
-   return <button>{props.children}</button>;
-}
+const Button: FC<ButtonProps> = ({ children, color, big, ...props }) => {
+  
+	
+	const rootClass = ['my-btn']
+	if(big){
+		rootClass.push('big')
+	}
+	return (
+    <button className={rootClass.join(' ')} {...props} style={{ color }}>
+      {children}
+    </button>
+  );
+};
 
 export default Button;
