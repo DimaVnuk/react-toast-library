@@ -1,1 +1,1 @@
-export * from './components';
+export { toast } from './container/ToastSingleton';
