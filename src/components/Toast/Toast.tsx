@@ -5,7 +5,7 @@ import ErrorBoundary from '../../layout/ErrorBoundary/ErrorBoundary';
 
 export const Toast = (props) => {
    const { toastList, position, autoDelete, autoDeleteTime, animation } = props;
-   const [list, setList] = useState([toastList]);
+   const [list, setList] = useState([]);
 
    useEffect(() => {
       setList([...toastList]);
