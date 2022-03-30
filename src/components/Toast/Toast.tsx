@@ -47,7 +47,7 @@ export const Toast = ({
                      <span className={`close ${color}`}>X</span>
                   </button>
                   <div className="notification-image">
-                     <img src={toast.icon} />
+                     <img className={`${color}`} src={toast.icon} />
                   </div>
                   <div>
                      <p className={`notification-title  ${color}`}>{toast.title}</p>
