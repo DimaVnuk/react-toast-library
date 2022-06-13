@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { ToastWrapper } from '../../styled-components/styleGlobal';
 import ErrorBoundary from '../../layout/ErrorBoundary/ErrorBoundary';
+import { IPropsType } from '../../interfaces/ToastInterface';
 
-export const Toast = (props) => {
-   const { toastList, position, autoDelete, autoDeleteTime, animation } = props;
-   const [list, setList] = useState([toastList]);
-
+export const Toast = ({
+   toastList,
+   position,
+   autoDelete,
+   autoDeleteTime,
+   animation,
+   background,
+   color,
+}: IPropsType) => {
+   const [list, setList] = useState([]);
    useEffect(() => {
       setList([...toastList]);
    }, [toastList]);
@@ -14,7 +21,7 @@ export const Toast = (props) => {
    useEffect(() => {
       const interval = setInterval(() => {
          if (autoDelete && toastList.length && list.length) {
-            deleteToast(toastList[0].id);
+            deleteToast(toastList[0]);
          }
       }, autoDeleteTime);
 
@@ -23,7 +30,7 @@ export const Toast = (props) => {
       };
    }, [toastList, autoDelete, autoDeleteTime, list]);
 
-   const deleteToast = (id: number) => {
+   const deleteToast = (id) => {
       const listItemIndex = list.findIndex((i) => i.id === id);
       const toastListItem = toastList.findIndex((i) => i.id === id);
       list.splice(listItemIndex, 1);
@@ -31,51 +38,31 @@ export const Toast = (props) => {
       setList([...list]);
    };
 
+   const renderToast = useCallback(
+      () =>
+         list.map((toast) => {
+            return (
+               <div key={toast.id + 1} className={`notification toast ${position} ${background}`}>
+                  <button onClick={() => deleteToast(toast.id)} className={`${color}`}>
+                     <span className={`close ${color}`}>X</span>
+                  </button>
+                  <div className="notification-image">
+                     <img className={`${color}`} src={toast.icon} />
+                  </div>
+                  <div>
+                     <p className={`notification-title  ${color}`}>{toast.title}</p>
+                     <p className={`notification-message  ${color}`}>{toast.description}</p>
+                  </div>
+               </div>
+            );
+         }),
+      [list]
+   );
+
    return (
       <ErrorBoundary>
          <ToastWrapper animation={animation}>
-            <div className={`notification-container ${position}`}>
-               {list.map((toast) => (
-                  <div
-                     key={toast.id + 1}
-                     className={`notification toast ${position}`}
-                     style={{
-                        backgroundColor: toast.backgroundColor,
-                        padding: toast.toastPadding,
-                     }}
-                  >
-                     <button
-                        onClick={() => deleteToast(toast.id)}
-                        style={{
-                           color: toast.titleColor,
-                        }}
-                     >
-                        <span className="close">X</span>
-                     </button>
-                     <div className="notification-image">
-                        <img src={toast.icon} />
-                     </div>
-                     <div>
-                        <p
-                           className="notification-title"
-                           style={{
-                              color: toast.titleColor,
-                           }}
-                        >
-                           {toast.title}
-                        </p>
-                        <p
-                           className="notification-message"
-                           style={{
-                              color: toast.descColor,
-                           }}
-                        >
-                           {toast.description}
-                        </p>
-                     </div>
-                  </div>
-               ))}
-            </div>
+            <div className={`notification-container ${position}`}>{renderToast()}</div>
          </ToastWrapper>
       </ErrorBoundary>
    );

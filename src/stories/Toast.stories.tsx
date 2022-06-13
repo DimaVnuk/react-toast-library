@@ -9,6 +9,18 @@ export default {
             options: ['error', 'warning', 'success', 'info'],
          },
       },
+      background: {
+         control: {
+            type: 'inline-radio',
+            options: ['red', 'green', 'purple', 'yellow'],
+         },
+      },
+      color: {
+         control: {
+            type: 'inline-radio',
+            options: ['black', 'white'],
+         },
+      },
       toastPosition: {
          control: {
             type: 'inline-radio',
@@ -42,6 +54,8 @@ export const ToastExample = (args: any) =>
       autoDelete: args.toastIsAutoDelete,
       delay: args.toastAutoDeleteTime,
       animation: args.animation,
+      background: args.background,
+      color: args.color,
    });
 
 ToastExample.args = {
@@ -51,4 +65,6 @@ ToastExample.args = {
    toastAutoDeleteTime: 3000,
    animation: '',
    description: 'Description',
+   background: 'red',
+   color: 'white',
 };

@@ -5,24 +5,7 @@ const errorIcon = require('../assets/svg/error.svg') as string;
 const infoIcon = require('../assets/svg/info.svg') as string;
 const warningIcon = require('../assets/svg/warning.svg') as string;
 const successIcon = require('../assets/svg/success.svg') as string;
-import {
-   WHITE,
-   GREEN,
-   RED,
-   PURPLE,
-   BLACK,
-   YELLOW,
-   GRAY,
-   SUCCESS,
-   ERROR,
-   INFO,
-   WARNING,
-   SUCCESS_TITLE,
-   WARNING_TITLE,
-   ERROR_TITLE,
-   INFO_TITLE,
-   CUSTOM_TITLE,
-} from '../constants/index';
+import { Color, Types, Title } from '../constants/index';
 
 let toastList: string[] = [];
 
@@ -43,58 +26,58 @@ class Singleton {
 
    getTitleName(prop) {
       switch (prop.type) {
-         case SUCCESS:
-            return SUCCESS_TITLE;
-         case ERROR:
-            return ERROR_TITLE;
-         case INFO:
-            return INFO_TITLE;
-         case WARNING:
-            return WARNING_TITLE;
+         case Types.Success:
+            return Title.SuccessTitle;
+         case Types.Error:
+            return Title.ErrorTitle;
+         case Types.Info:
+            return Title.InfoTitle;
+         case Types.Warning:
+            return Title.WarningTitle;
          default:
-            return CUSTOM_TITLE;
+            return Title.CustomTitle;
       }
    }
 
    getTitleColor(prop) {
       switch (prop.type) {
-         case SUCCESS:
-            return WHITE;
-         case ERROR:
-            return WHITE;
-         case INFO:
-            return WHITE;
-         case WARNING:
-            return BLACK;
+         case Types.Success:
+            return Color.White;
+         case Types.Error:
+            return Color.White;
+         case Types.Info:
+            return Color.White;
+         case Types.Warning:
+            return Color.Black;
          default:
-            return BLACK;
+            return Color.Black;
       }
    }
 
    getBackgroundColor(prop) {
       switch (prop.type) {
-         case SUCCESS:
-            return GREEN;
-         case ERROR:
-            return RED;
-         case INFO:
-            return PURPLE;
-         case WARNING:
-            return YELLOW;
+         case Types.Success:
+            return Color.Green;
+         case Types.Error:
+            return Color.Red;
+         case Types.Info:
+            return Color.Purple;
+         case Types.Warning:
+            return Color.Yellow;
          default:
-            return GRAY;
+            return Color.Gray;
       }
    }
 
    getIcon(prop) {
       switch (prop.type) {
-         case SUCCESS:
+         case Types.Success:
             return successIcon;
-         case ERROR:
+         case Types.Error:
             return errorIcon;
-         case INFO:
+         case Types.Info:
             return infoIcon;
-         case WARNING:
+         case Types.Warning:
             return warningIcon;
          default:
             return successIcon;
@@ -128,6 +111,8 @@ class Singleton {
                autoDelete={prop.autoDelete}
                autoDeleteTime={prop.delay}
                animation={prop.animation}
+               background={prop.background}
+               color={prop.color}
             />
          </ToastContainerPortal>
       );
